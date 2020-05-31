@@ -1,6 +1,10 @@
 
 package checkers;
 
+/** 
+ * The GameBoard class defines all aspects of the piece movement
+ * and graphics.
+ */
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,11 +13,6 @@ import java.util.Stack;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-/**The GameBoard class defines all aspects of the game rules and
- * graphics.
- *
- * @author User
- */
 public class GameBoard extends JComponent {
 
     private static final int SQ_WIDTH = 85;//width of each square
@@ -95,8 +94,7 @@ public class GameBoard extends JComponent {
                     {
                         sq.setType(SquareType.DARK);
                     }
-                }
-                
+                }       
                 //Set x,y coordinates
                 sq.setXY(currentX, currentY);
                 sq.setIndex(c,r);
@@ -107,15 +105,11 @@ public class GameBoard extends JComponent {
                 //flip light/dark for next square in row
                 isLight = !isLight;
             }
-            
             //flip light/dark to start next row
             isLight = !isLight;
         }
-        
-
     }//END makeSqMatrix()
     
-     
     //returns the square object given the x,y coordinates
     public Square getSquare(int x, int y)
     {
@@ -123,9 +117,7 @@ public class GameBoard extends JComponent {
         int row = y / SQ_WIDTH;    
         
         return boardMatrix[col][row];
-        
     }//END getSquare()
-    
  
     //Updates a square in the matrix typically when the SquareType has changed
     public void updateMatrix(Square sq)
@@ -147,17 +139,12 @@ public class GameBoard extends JComponent {
     }//End movePiece()
     
     
-    /**
-     * @param moveFrom is the selected player's square
-     * @param moveTo is the square to move to
+    /** Req 2.1.0 / 2.1.2 / 2.3.0
      * A move is valid if the player's piece moves "forward" diagonally by 1 space
+     * A move is valid if the player's king moves "forward" or backward diagonally
+     * @param moveFrom selected player's square
+     * @param moveTo square to move to
      * */
-
-/**Valid Move / Invalid Move / King Movement
-*Checks and allows a piece to move forward if possible,
-*also allows Kings to move forward and backward
-*(Req 2.1.0 / 2.1.2 / 2.3.0)
-*/
     public boolean isValid(Square moveFrom, Square moveTo)
     {
         if (!moveTo.getType().equals(SquareType.DARK))	//if moveTo square is NOT empty, return false
@@ -181,22 +168,16 @@ public class GameBoard extends JComponent {
                 return false;
         }
     }//END isValid()
-    
-/**Standard Jump / King Jump / Jump Validation / Piece Elimination
-*Checks to see if a standard piece can jump,
-*and checks to see if it is a King so it can either move up or down,
-*returns true for either if possible.
-*The jumped piece will then be marked as eliminated
-*(Req 3.1.1 / 3.1.2 / 3.1.3 / 3.2.0)
-*/
+
+    /** Req 3.1.1 / 3.1.2 / 3.1.3 / 3.2.0
+     * A jump is valid if the player's piece moves "forward" diagonally by 2 spaces and jumps over an opponent's piece
+     * A jump is valid if the player's king moves "forward" or backward diagonally, jumping over an opponent's piece
+     * @param moveFrom selected player's square
+     * @param moveTo square to move to
+     * @return true if valid jump
+     */
     public boolean isValidJump(Square moveFrom, Square moveTo)
     {
-        /**
-         * Method checks to see if jump is possible
-         * if so then it checks which direction via switch
-         * at this time Kings can't jump though that could be fixed with an OR in the if statement
-         * before returning true the jumped piece is then 'eliminated' by the process in Square
-         **/
         if (!moveTo.getType().equals(SquareType.DARK))	//if moveTo square is NOT empty, return false
         {
             return false;
@@ -349,10 +330,9 @@ public class GameBoard extends JComponent {
         }
     }
 
-/**Multi-Jump Mechanics
-*Checks and makes sure the piece can perform a multiple-jumps
-*(Req 3.0.0)
-*/
+    /** Req 3.0.0
+     * Multiple jump button
+     */
     public void flipMultJump()
     {
         isMultJump = !isMultJump;
@@ -398,25 +378,23 @@ public class GameBoard extends JComponent {
         clicks = 0;
     }
     
+    /** Req 2.4.0 / 2.4.1
+     * Determines whether the location of the mouse click is valid for the
+     * given player. Square is highlighted if selected and valid.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return true if valid mouse click
+     */
     public boolean playerClicked(int x, int y) 
     {
-
         Square clickedSq = this.getSquare(x, y);
         clicks++;
-       
-        //if it's the first click, select the square
 
-
-/**Selecting Piece / Highlight
-*If statements check to see if the first or second player are choosing, and selects its piece.
-*Once selected the piece is highlighted.
-*(Req 2.4.0 / 2.4.1)
-*/
         if (clicks == 1)
         {
             if ((playercheck && (clickedSq.getType().equals(SquareType.PLYR1) 
                     || clickedSq.getType().equals(SquareType.KING1)))
-                || (!playercheck && (clickedSq.getType().equals(SquareType.PLYR2) 
+                    || (!playercheck && (clickedSq.getType().equals(SquareType.PLYR2) 
                     || clickedSq.getType().equals(SquareType.KING2))))
             {
                 multJumpList.clear();
@@ -546,13 +524,7 @@ public class GameBoard extends JComponent {
                         eliminated.eliminated();
                         updateMatrix(eliminated);
                         numEliminated++;
-                        
-/*King Check / King Crowning / Piece Elimination
-*After move, the piece is checked to see if it is available to become a King,
-*if it can become a King then the piece will become one.
-*Meanwhile, any jumped pieces are eliminated and added to scoreboard
-*(Req 2.2.0 / 2.2.1 / 3.2.1)
-*/
+
                         if(jumpTo.kingCheck())
                         {
                             jumpTo.king();
@@ -643,7 +615,7 @@ public class GameBoard extends JComponent {
                 return false;
             }
         }
-        else    //This is to catch errors
+        else    //to catch errors
         {
             clicks = 0;
             selectedSq = null;

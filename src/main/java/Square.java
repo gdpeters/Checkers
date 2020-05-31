@@ -1,6 +1,10 @@
- 
+
 package checkers;
 
+/**
+ * A Square represents a single square on the gameboard
+ * that can hold a player's piece or be empty.
+ */
 public class Square {
     
     //x,y are coordinates of square on gameboard
@@ -10,8 +14,7 @@ public class Square {
     
     public Square()
     {
-        type = null;
- 
+        type = null; 
     }
     
     public Square(SquareType st, int x, int y, int col, int row)
@@ -147,7 +150,5 @@ public class Square {
     public int getRow()
     {
         return row;
-    }
-    
-    
+    }  
 }

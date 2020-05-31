@@ -1,6 +1,9 @@
-
 package checkers;
 
+/** 
+ * Designs the JFrame, JPanels, and the eventhandlers for
+ * the GUI.
+ */
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
@@ -8,10 +11,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-/** WindowFrame class designs the JFrame, JPanels, and the
- * MouseEvent method that runs when a player clicks the mouse.
- *
- */
 public class GameboardWindow extends JFrame
 {
     private JFrame frame;
@@ -29,17 +28,15 @@ public class GameboardWindow extends JFrame
     private JComponent labelGraphics;
     private Rules rules;
 
-/**Game Board / Checkers Pieces on Board / Red Pieces / Black Pieces
-*Sets up an 8x8 game board with all pieces,
-*red and black and places them appropriately
-*(Req 1.1.0 / 1.2.0 / 1.2.1 / 1.2.2)
-*/
     public GameboardWindow()
     {
         resetGameboard();
 
     }//END WindowFrame constructor
     
+    /** Req 1.1.0 / 1.2.0 / 1.2.1 / 1.2.2
+     * Adds panels, trough, and buttons to gameboard
+     */
     private void resetGameboard()
     {
         rules = new Rules();
@@ -113,11 +110,13 @@ public class GameboardWindow extends JFrame
         return p;
     }//END backgroundPanel()
 
-
-/**Muliple Jumps
-*Button that allows players to multi-jump
-*(Req 4.2.3)
-*/
+    /** Req 4.2.3
+     * Defines multiple jump functionality
+     * @param x x-coordinate of mouse click
+     * @param y y-coordinate of mouse click
+     * @param w width of square
+     * @param h height of square
+     */
     public void multJumpButton(int x, int y, int w, int h)
     {
 
@@ -127,8 +126,6 @@ public class GameboardWindow extends JFrame
             img = ImageIO.read(getClass().getClassLoader().getResource(buttonFile));
             ImageIcon icon = new ImageIcon(img);
             button = new JButton(icon);
-
-
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
@@ -215,12 +212,12 @@ public class GameboardWindow extends JFrame
             {
                 final BufferedImage img = ImageIO.read(getClass().getClassLoader().getResource("bannerPlyr1.png"));
                 jc = new JComponent() {
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponent(g);
+                    @Override
+                    protected void paintComponent(Graphics g) {
+                        super.paintComponent(g);
 
-                    g.drawImage(img, 40, 250, null);
-                    
+                        g.drawImage(img, 40, 250, null);
+                        
                     }
                 };
                 jc.setBounds(0,0,FRAMEWIDTH,FRAMEHEIGHT);
@@ -231,20 +228,17 @@ public class GameboardWindow extends JFrame
             {
                 final BufferedImage img = ImageIO.read(getClass().getClassLoader().getResource("bannerPlyr2.png"));
                 jc = new JComponent() {
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponent(g);
+                    @Override
+                    protected void paintComponent(Graphics g) {
+                        super.paintComponent(g);
 
-                    g.drawImage(img, 40, 250, null);
+                        g.drawImage(img, 40, 250, null);
 
                     }
                 };
                 jc.setBounds(0,0,FRAMEWIDTH,FRAMEHEIGHT);
                 pane.add(jc, new Integer(6));
             }
-
-
-
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
@@ -269,26 +263,30 @@ public class GameboardWindow extends JFrame
         button.setFocusPainted(false);
 
         button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    flip = !flip;
-                    pane.remove(submitJumpButton);
-                    pane.remove(cancelJumpButton);
-                    pane.remove(labelGraphics);
-                    pane.add(multJumpButton);
-                    pane.add(labelGraphics);
-                    gameboard.cancelMultJump();
-                    gameboard.repaint();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flip = !flip;
+                pane.remove(submitJumpButton);
+                pane.remove(cancelJumpButton);
+                pane.remove(labelGraphics);
+                pane.add(multJumpButton);
+                pane.add(labelGraphics);
+                gameboard.cancelMultJump();
+                gameboard.repaint();
 
-                }
-            });
+            }
+        });
         cancelJumpButton = button;
     }//END cancelJumpButton()
 
-/**Undo
-*Button allows players to undo back all the way to turn 1
-*(Req 4.2.4)
-*/
+    /** Req 4.2.4
+     * Button to undo as many plays that have been played
+     * @param x x-coordinate of mouse click
+     * @param y y-coordinate of mouse click
+     * @param w width of square
+     * @param h height of square
+     * @return JButton to undo the previous play
+     */
     public JButton undoButton(int x, int y, int w, int h)
     {
         JButton button = null;
@@ -328,10 +326,14 @@ public class GameboardWindow extends JFrame
         return button;
     }//END undoButton()
 
-/**Skip
-*Button will allow a player to skip
-*(4.2.5)
-*/
+    /** Req. 4.2.5
+     * Button to skip a player's turn
+     * @param x x-coordinate of mouse click
+     * @param y y-coordinate of mouse click
+     * @param w width of square
+     * @param h height of square
+     * @return JButton to skip a player's turn
+     */
     public JButton skipTurnButton(int x, int y, int w, int h)
     {
         JButton button = null;
@@ -350,30 +352,30 @@ public class GameboardWindow extends JFrame
         button.setBorderPainted(false);
         button.setFocusPainted(false);
 
-
         button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
-                    if (!p1Trough.isLoser() && ! p2Trough.isLoser())
-                    {
-                        gameboard.skipTurn();
-                        gameboard.repaint();
-                        current.setCurrent(gameboard.playercheck);
-                        current.repaint();
-                    }
-
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if (!p1Trough.isLoser() && ! p2Trough.isLoser())
+                {
+                    gameboard.skipTurn();
+                    gameboard.repaint();
+                    current.setCurrent(gameboard.playercheck);
+                    current.repaint();
                 }
-            });
-
-
+            }
+        });
         return button;
     }//END skipTurnButton()
 
-/**Rules
-*Button that boots up the rules during a game
-*(Req 2.1.3 / 4.2.6)
-*/
+    /** Req 2.1.3 / 4.2.6
+     * Button to view rules
+     * @param x x-coordinate of mouse click
+     * @param y y-coordinate of mouse click
+     * @param w width of square
+     * @param h height of square
+     * @return JButton to view rules
+     */
     public JButton rulesButton(int x, int y, int w, int h)
     {
         JButton button = null;
@@ -394,22 +396,23 @@ public class GameboardWindow extends JFrame
 
 
         button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    rules.viewFrame();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rules.viewFrame();
 
-                }
-            });
-
-
+            }
+        });
         return button;
     }//END rulesButton()
 
-
-/**Restart
-*Button restarts the game
-*(Req 4.2.7)
-*/
+    /** Req 4.2.7
+     * Button to restart the game
+     * @param x x-coordinate of mouse click
+     * @param y y-coordinate of mouse click
+     * @param w width of square
+     * @param h height of square
+     * @return JButton to restart the game
+     */
     public JButton restartButton(int x, int y, int w, int h)
     {
         JButton button = null;
@@ -429,20 +432,16 @@ public class GameboardWindow extends JFrame
         button.setFocusPainted(false);
 
         button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
-                    frame.dispose();
-                    resetGameboard();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                frame.dispose();
+                resetGameboard();
 
-                }
-            });
-
+            }
+        });
         return button;
-
     }//END restartButton()
-
-
 
     public void labelGraphics()
     {
@@ -490,6 +489,9 @@ public class GameboardWindow extends JFrame
     }//END labelGraphics()
 
 
+    /** Req. 4.2.1 / 4.2.2 / 4.2.8/ 4.3.0
+     * Directs control flow for every mouse click.
+     */
     private synchronized void addMouseListener()
     {
         //This method determines what happens when a player clicks the mouse
@@ -500,11 +502,6 @@ public class GameboardWindow extends JFrame
                 int x = e.getX();
                 int y = e.getY();
 
-/**Player 1 Score / Player 2 Score / Current Player indicator / Winner
-*Will check to see if a piece has been taken and added to the scoreboard for either player 1 or player 2,
-*or checks whose turn it may be,
-*or checks for a winner and displays a banner presenting them
-*(4.2.1 / 4.2.2 / 4.2.8/ 4.3.0)*/
                 boolean update = gameboard.playerClicked(x, y);
                 if (update)
                 {
@@ -525,9 +522,7 @@ public class GameboardWindow extends JFrame
                         current.setCurrent(gameboard.playercheck);
                         current.repaint();
                     }
-
                 }
-
             }
         });
     }//END addMouseListener()

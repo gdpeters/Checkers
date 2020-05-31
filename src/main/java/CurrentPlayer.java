@@ -1,6 +1,9 @@
 
 package checkers;
 
+/**
+ * Sets the current player and draws piece graphics.
+ */
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

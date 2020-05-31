@@ -1,6 +1,10 @@
 
 package checkers;
 
+/**
+ * Trough consists of any player piece that was
+ * removed from the gameboard.
+ */
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

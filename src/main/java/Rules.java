@@ -1,6 +1,9 @@
 
 package checkers;
 
+/**
+ * Rules of the game viewable to players with the Rules button
+ */
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JEditorPane;
@@ -16,7 +19,6 @@ public class Rules extends JFrame {
     
     public Rules()
     {
-        
         makeFrame();
     }
   
@@ -86,7 +88,6 @@ public class Rules extends JFrame {
         + "<p>The first player to capture all of your opponent’s checkers wins!</p>"
         + "</body>"
         + "</html>";
-
 
      return rules;
   }

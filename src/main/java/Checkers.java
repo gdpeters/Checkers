@@ -1,6 +1,9 @@
 
 package checkers;
 
+/**
+ * Java desktop Checkers game
+ */
 public class Checkers {
 
     public static void main(String[] args) {

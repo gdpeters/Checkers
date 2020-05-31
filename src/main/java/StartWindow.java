@@ -1,6 +1,11 @@
 
 package checkers;
 
+/**
+ * Gameboard start window. When initially opened,
+ * an automatically generated game begins to play until
+ * players click Start.
+ */
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -12,11 +17,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JButton;
 
-/**
- * Gameboard interface
- * 
- * 
- */
 public class StartWindow extends JFrame
 {
     private JFrame frame;
