@@ -1,0 +1,30 @@
+﻿<html>
+   <body>
+      <h1>Checkers</h1>
+      <h2>Rules of the Game</h2>
+      <h3><br>OBJECT</h3>
+      <p>Eliminate all of your opponent’s checkers from the gameboard by capturing their pieces.</p>
+      <h3><br>HOW TO PLAY</h3>
+      <p>When the game starts, please select which player will go first.</p>
+      <p>On your turn, select any one of your checkers by the movement’s rules described below.</p>
+      <p>After selecting and moving one of your checker pieces, your turn is over.</p>
+      <p>The game will continue on with players alternating turns.</p>
+      <h3><br>MOVEMENT RULES</h3>
+      <p>• Always move your checker diagonally forward, toward your opponent’s side of the gameboard.</p>
+      <p>NOTE: After a checker becomes a “King,” it can move diagonally forward and backward.</p>
+      <p>• Move your checker one space diagonally, to an open adjacent square;</p>
+      <p>or jump one or more opponent’s checkers diagonally to an open square adjacent to the checker your jumped.</p>
+      <p>When you jump over an opponent’s checker, you capture it.</p>
+      <p>• If all squares adjacent to your checker are occupied, your checker is blocked and cannot move.</p>
+      <h3><br>CAPTURING AN OPPONENT'S CHECKER</h3>
+      <p>• If you jump an opponent’s checker, you capture it.</p>
+      <p>The checker piece will then be removed from the gameboard.</p>
+      <h3><br>BECOMING A KING</h3>
+      <p>When one of your checker pieces reaches the first-row on your opponent’s side of the gameboard, it will become a “King”.</p>
+      <p>The checker piece will change appearance, and can move forward or backward on the gameboard.</p>
+      <h3>HOW TO WIN</h3>
+      <p>The first player to capture all of your opponent’s checkers wins!</p>
+   </body>
+</html>
+
+

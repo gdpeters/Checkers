@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Checkers.jnlp">
+  <information>
+    <title>Checkers Game</title>
+    <vendor>Unknown</vendor>
+    <description>Checkers</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Checkers.jar" size="409927" download="null" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="checkers.Checkers"  name="Checkers" />
+  <update check="background"/>
+</jnlp>
