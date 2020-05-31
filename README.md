@@ -8,7 +8,7 @@ Open the jar file and you're good to go!
 
 ### Features
 <hline>
-- Undo plays
-- Multiple jumps
-- Skip turn
-- Restart
+- Undo plays  
+- Multiple jumps  
+- Skip turn  
+- Restart  
