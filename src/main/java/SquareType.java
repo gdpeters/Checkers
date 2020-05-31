@@ -1,12 +1,13 @@
 
 package checkers;
 
-/** Squares can be one of 11 types but their type can change during a game
- * Empty dark square, empty light square
- * Player 1 piece, player 2 piece
- * Player 1 selected piece, player 2 selected piece, empty selected square
- * Player 1 king piece, player 2 king piece
- * Player 1 selected king piece, player 2 selected king piece
+/** Gameboard square types include:
+ * empty (DARK, LIGHT)
+ * player (PLYR1, PLYR2),
+ * selected player (SLCTD1, SLCTD2)
+ * selected empty (SLCTD)
+ * king (KING1, KING2)
+ * selected king (SLCTDK1, SLCTDK2)
  */
 public enum SquareType {
     

@@ -12,6 +12,11 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JButton;
 
+/**
+ * Gameboard interface
+ * 
+ * 
+ */
 public class StartWindow extends JFrame
 {
     private JFrame frame;
@@ -22,7 +27,6 @@ public class StartWindow extends JFrame
     private static final int FRAMEWIDTH = 1230, FRAMEHEIGHT = 860;
     private boolean stop;
     private Rules rules;
-
 
     public StartWindow()
     {
@@ -159,9 +163,9 @@ public class StartWindow extends JFrame
                 }
             }
 
-       } catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             System.err.println(ex.getMessage());
-       }
+        }
 
         JComponent jc = null;
         try {
